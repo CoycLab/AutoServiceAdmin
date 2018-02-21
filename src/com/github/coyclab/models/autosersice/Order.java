@@ -4,17 +4,37 @@ import java.util.Date;
 
 public class Order {
 
-    private int number;
-    private Date entryDate;
-    private Date startDate;
-    private Date finishDate;
-    private float price;
+    private int orderNumber;
+    private Date orderEntryDate;
+    private Date orderStartDate;
+    private Date orderFinishDate;
+    private float orderPrice;
 
-    public Order(int number, Date startDate, Date finishDate, float price) {
-        this.number = number;
-        this.entryDate = new Date();
-        this.startDate = startDate;
-        this.finishDate = finishDate;
-        this.price = price;
+    public Order(int orderNumber, Date orderStartDate, Date orderFinishDate, float orderPrice) {
+        this.orderNumber = orderNumber;
+        this.orderEntryDate = new Date();
+        this.orderStartDate = orderStartDate;
+        this.orderFinishDate = orderFinishDate;
+        this.orderPrice = orderPrice;
+    }
+
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public Date getOrderEntryDate() {
+        return orderEntryDate;
+    }
+
+    public Date getOrderStartDate() {
+        return orderStartDate;
+    }
+
+    public Date getOrderFinishDate() {
+        return orderFinishDate;
+    }
+
+    public float getOrderPrice() {
+        return orderPrice;
     }
 }
