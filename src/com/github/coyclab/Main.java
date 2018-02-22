@@ -1,24 +1,20 @@
 package com.github.coyclab;
 
-import com.github.coyclab.models.autosersice.Order;
-import com.github.coyclab.models.autosersice.RepairPlace;
-import com.github.coyclab.models.builders.AutoServiceBuilder;
+import com.github.coyclab.models.worker.Worker;
+import com.github.coyclab.models.worker.WorkersManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        List<RepairPlace> repairPlaceList;
-        List<Order> orderList;
+        WorkersManager.addWorker("Zigmund");
+        WorkersManager.addWorker("Alexey");
+        WorkersManager.addWorker("Fedor");
 
-        AutoServiceBuilder builder = new AutoServiceBuilder();
-        builder.startAutoService();
+        List<Worker> workers = WorkersManager.getWorkerList();
 
-        repairPlaceList = builder.getRepairPlaceList();
-        orderList = builder.getOrderList();
 
     }
 }

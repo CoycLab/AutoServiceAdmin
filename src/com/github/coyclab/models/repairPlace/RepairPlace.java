@@ -1,4 +1,4 @@
-package com.github.coyclab.models.autosersice;
+package com.github.coyclab.models.repairPlace;
 
 public class RepairPlace {
 

@@ -1,4 +1,4 @@
-package com.github.coyclab.models.autosersice;
+package com.github.coyclab.models.order;
 
 import java.util.Date;
 
@@ -10,6 +10,7 @@ public class Order {
     private Date orderFinishDate;
     private float orderPrice;
 
+
     public Order(int orderNumber, Date orderStartDate, Date orderFinishDate, float orderPrice) {
         this.orderNumber = orderNumber;
         this.orderEntryDate = new Date();
@@ -17,6 +18,8 @@ public class Order {
         this.orderFinishDate = orderFinishDate;
         this.orderPrice = orderPrice;
     }
+
+
 
     public int getOrderNumber() {
         return orderNumber;
@@ -37,4 +40,6 @@ public class Order {
     public float getOrderPrice() {
         return orderPrice;
     }
+
+
 }
