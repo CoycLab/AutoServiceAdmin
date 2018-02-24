@@ -1,19 +1,15 @@
 package com.github.coyclab;
 
-import com.github.coyclab.models.worker.Worker;
-import com.github.coyclab.models.worker.WorkersManager;
+import com.github.coyclab.models.Order;
 
-import java.util.List;
+import java.util.Date;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        WorkersManager.addWorker("Zigmund");
-        WorkersManager.addWorker("Alexey");
-        WorkersManager.addWorker("Fedor");
+        Order order = new Order(1, new Date(), new Date(), 100f);
 
-        List<Worker> workers = WorkersManager.getWorkerList();
 
 
     }

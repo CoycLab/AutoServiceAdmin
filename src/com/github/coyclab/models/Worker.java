@@ -1,4 +1,4 @@
-package com.github.coyclab.models.worker;
+package com.github.coyclab.models;
 
 public class Worker {
 

@@ -1,4 +1,4 @@
-package com.github.coyclab.models.repairPlace;
+package com.github.coyclab.models;
 
 public class RepairPlace {
 
