@@ -20,6 +20,7 @@ public class Order extends AEntity {
         this.startDate = startDate;
         this.finishDate = finishDate;
         this.price = price;
+        this.status = OrderStatus.WAITING;
     }
 
     public Date getStartDate() {
@@ -60,6 +61,10 @@ public class Order extends AEntity {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+    public Date getEntryDate() {
+        return entryDate;
     }
 
     public enum OrderStatus {
