@@ -3,7 +3,6 @@ package com.github.coyclab;
 import com.github.coyclab.comparators.OrderCompByPrice;
 import com.github.coyclab.manager.OrderManager;
 import com.github.coyclab.models.Order;
-import com.github.coyclab.repository.OrderRepo;
 
 import java.util.Date;
 
@@ -19,13 +18,23 @@ public class Main {
         Order order6 = new Order(6, new Date(), new Date(), 57.30f);
 
 
+
+
         Order test = new Order(7, new Date(), new Date(), 57.30f);
         OrderManager manager = new OrderManager();
         manager.add(test);
+        manager.add(order1);
+        manager.add(order2);
+        manager.add(order3);
+        manager.add(order4);
+        manager.add(order5);
+        manager.add(order6);
 
-        System.out.println(manager.);
+        manager.sort(new OrderCompByPrice());
 
-//        System.out.println(orderRepo);
+//        System.out.println(manager.);
+
+        System.out.println(manager);
 
 
 

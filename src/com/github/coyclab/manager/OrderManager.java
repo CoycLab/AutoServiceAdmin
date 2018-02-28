@@ -1,24 +1,21 @@
 package com.github.coyclab.manager;
 
-import com.github.coyclab.api.AEntity;
+import com.github.coyclab.api.AManager;
 import com.github.coyclab.models.Order;
 import com.github.coyclab.repository.OrderRepo;
 
-public class OrderManager {
-
-    private OrderRepo orderRepo;
+public class OrderManager extends AManager <OrderRepo, Order>{
 
     public OrderManager() {
-        this.orderRepo = new OrderRepo();
+        super(new OrderRepo());
     }
 
-    public void add(Order entity){
-        orderRepo.getRepository().add(entity);
+    public void add(final Order entity){
+        repository.getRepository().add(entity);
     }
 
-    public void remove(Integer id){
-        orderRepo.getRepository().remove(id);
+    public void remove(final Integer id){
+        repository.getRepository().remove(id);
     }
-
 
 }

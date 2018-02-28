@@ -4,19 +4,10 @@ import com.github.coyclab.models.Order;
 
 import java.util.Comparator;
 
-public class OrderCompByPrice {
-    Comparator<Order> comparator = new Comparator<Order>() {
-        @Override
-        public int compare(Order o1, Order o2) {
-            if (o1.getPrice() < o2.getPrice()){
-                return -1;
-            } else if (o1.getPrice() > o2.getPrice()){
-                return 1;
-            } else return 0;
-        }
-    };
+public class OrderCompByPrice implements Comparator<Order> {
 
-    public Comparator<Order> get() {
-        return comparator;
+    @Override
+    public int compare(final Order o1, final Order o2) {
+        return o1.getPrice().compareTo(o2.getPrice());
     }
 }

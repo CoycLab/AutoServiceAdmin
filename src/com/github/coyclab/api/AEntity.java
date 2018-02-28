@@ -1,6 +1,5 @@
 package com.github.coyclab.api;
 
-
 public abstract class AEntity {
 
     private Integer id;

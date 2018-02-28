@@ -10,7 +10,7 @@ public class Order extends AEntity {
     private Date entryDate;
     private Date startDate;
     private Date finishDate;
-    private float price;
+    private Float price;
     private Worker worker;
     private OrderStatus status;
 
@@ -39,7 +39,7 @@ public class Order extends AEntity {
         this.finishDate = finishDate;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
