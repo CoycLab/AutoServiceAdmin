@@ -1,24 +1,21 @@
 package com.github.coyclab.models;
 
-public class RepairPlace {
+import com.github.coyclab.api.AEntity;
 
-    private int repairPlaceNumber;
-    private boolean isFreeRepairPlace;
+public class RepairPlace extends AEntity{
 
-    public RepairPlace(int repairPlaceNumber) {
-        this.repairPlaceNumber = repairPlaceNumber;
-        this.isFreeRepairPlace = true;
+    private boolean isFree;
+
+    public RepairPlace(int id) {
+        super(id);
+        this.isFree = true;
     }
 
-    public int getRepairPlaceNumber() {
-        return repairPlaceNumber;
+    public boolean isFree() {
+        return isFree;
     }
 
-    public boolean isFreeRepairPlace() {
-        return isFreeRepairPlace;
-    }
-
-    public void setFreeRepairPlace(boolean freeRepairPlace) {
-        isFreeRepairPlace = freeRepairPlace;
+    public void setFree(boolean freeRepairPlace) {
+        isFree = freeRepairPlace;
     }
 }

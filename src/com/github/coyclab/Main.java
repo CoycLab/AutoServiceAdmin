@@ -1,43 +1,19 @@
 package com.github.coyclab;
 
-import com.github.coyclab.comparators.OrderCompByPrice;
-import com.github.coyclab.manager.OrderManager;
-import com.github.coyclab.models.Order;
-
-import java.util.Date;
+import com.github.coyclab.facade.Facade;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Order order1 = new Order(1, new Date(), new Date(), 100f);
-        Order order2 = new Order(2, new Date(), new Date(), 80.0f);
-        Order order3 = new Order(3, new Date(), new Date(), 120f);
-        Order order4 = new Order(4, new Date(), new Date(), 60f);
-        Order order5 = new Order(5, new Date(), new Date(), 45f);
-        Order order6 = new Order(6, new Date(), new Date(), 57.30f);
+        Facade facade = new Facade();
+        facade.initAutoservice();
+//        String freeWorkers = facade.getFreeWorkers();
+//        System.out.println(freeWorkers);
 
+        System.out.println(facade.getOrders());
 
-
-
-        Order test = new Order(7, new Date(), new Date(), 57.30f);
-        OrderManager manager = new OrderManager();
-        manager.add(test);
-        manager.add(order1);
-        manager.add(order2);
-        manager.add(order3);
-        manager.add(order4);
-        manager.add(order5);
-        manager.add(order6);
-
-        manager.sort(new OrderCompByPrice());
-
-//        System.out.println(manager.);
-
-        System.out.println(manager);
-
-
-
+        System.out.println(facade.getOrdersByPrice());
 
     }
 }

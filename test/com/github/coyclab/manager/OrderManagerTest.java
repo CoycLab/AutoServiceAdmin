@@ -1,6 +1,5 @@
 package com.github.coyclab.manager;
 
-import com.github.coyclab.comparators.OrderCompByPrice;
 import com.github.coyclab.models.Order;
 
 import org.junit.Test;
@@ -30,9 +29,9 @@ public class OrderManagerTest {
             manager.add(order);
         }
 
-        manager.sort(new OrderCompByPrice());
+//        manager.sort(new OrderCompByPrice());
 
-        List<Order> repository = manager.getRepository().getRepository();
+        List<Order> repository = manager.getOrders();
 
         for (int i = 0; i < orders.size() - 1; i++) {
             if (repository.get(i).getPrice() > repository.get(i + 1).getPrice()){

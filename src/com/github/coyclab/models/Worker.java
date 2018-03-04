@@ -1,20 +1,23 @@
 package com.github.coyclab.models;
 
-public class Worker {
+import com.github.coyclab.api.AEntity;
+
+public class Worker extends AEntity {
 
     private String workerName;
     private boolean isFree;
 
-    public Worker(String workerName) {
+    public Worker(int id, String workerName) {
+        super(id);
         this.workerName = workerName;
         this.isFree = true;
     }
 
-    public String getWorkerName() {
+    public String getName() {
         return workerName;
     }
 
-    public void setWorkerName(String workerName) {
+    public void setName(String workerName) {
         this.workerName = workerName;
     }
 
@@ -24,5 +27,10 @@ public class Worker {
 
     public void setFree(boolean free) {
         isFree = free;
+    }
+
+    @Override
+    public String toString() {
+        return "Id: " + getId() + " Name: " + workerName;
     }
 }

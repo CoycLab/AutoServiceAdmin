@@ -1,8 +1,5 @@
 package com.github.coyclab.api;
 
-import java.util.Collections;
-import java.util.Comparator;
-
 public abstract class AManager<R extends ARepository, E extends AEntity> {
 
     protected R repository;
@@ -19,11 +16,4 @@ public abstract class AManager<R extends ARepository, E extends AEntity> {
         repository.getRepository().remove(id);
     }
 
-    public void sort(Comparator<E> comparator){
-        Collections.sort(repository.getRepository(), comparator);
-    }
-
-    public R getRepository() {
-        return repository;
-    }
 }

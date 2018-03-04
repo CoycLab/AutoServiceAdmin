@@ -1,8 +1,8 @@
 package com.github.coyclab.models;
 
-
 import com.github.coyclab.api.AEntity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Order extends AEntity {
@@ -65,6 +65,20 @@ public class Order extends AEntity {
 
     public Date getEntryDate() {
         return entryDate;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
+
+        builder.append("Id: ").append(getId()).append("\n")
+                .append("Entry date: ").append(dateFormat.format(entryDate)).append("\n")
+                .append("Start date: ").append(dateFormat.format(startDate)).append("\n")
+                .append("Finish date: ").append(dateFormat.format(finishDate)).append("\n")
+                .append("Price: ").append(price).append("\n");
+        return builder.toString();
     }
 
     public enum OrderStatus {
