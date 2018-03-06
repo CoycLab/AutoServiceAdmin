@@ -8,12 +8,22 @@ public class Main {
 
         Facade facade = new Facade();
         facade.initAutoservice();
-//        String freeWorkers = facade.getFreeWorkers();
-//        System.out.println(freeWorkers);
 
-        System.out.println(facade.getOrders());
 
-        System.out.println(facade.getOrdersByPrice());
+
+        System.out.println(facade.getWorkers());
+
+        facade.addWorker(8, "TestWorker");
+
+        System.out.println(facade.getWorkers());
+
+        System.out.println(facade.getFreeWorkers());
+
+//        System.out.println(facade.getOrders());
+//
+//        System.out.println(facade.getOrdersByPrice());
+//
+//        System.out.println(facade.getFreeRepairPlaces());
 
     }
 }

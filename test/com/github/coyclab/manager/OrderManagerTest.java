@@ -1,4 +1,4 @@
-package com.github.coyclab.manager;
+package com.github.coyclab.managers;
 
 import com.github.coyclab.models.Order;
 
@@ -29,7 +29,7 @@ public class OrderManagerTest {
             manager.add(order);
         }
 
-//        manager.sort(new OrderCompByPrice());
+//        managers.sort(new OrderByPriceComparator());
 
         List<Order> repository = manager.getOrders();
 

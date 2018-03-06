@@ -1,4 +1,4 @@
-package com.github.coyclab.manager;
+package com.github.coyclab.managers;
 
 import com.github.coyclab.api.AManager;
 import com.github.coyclab.models.Order;

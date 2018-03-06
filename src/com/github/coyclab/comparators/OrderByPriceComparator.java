@@ -4,7 +4,7 @@ import com.github.coyclab.models.Order;
 
 import java.util.Comparator;
 
-public class OrderCompByPrice implements Comparator<Order> {
+public class OrderByPriceComparator implements Comparator<Order> {
 
     @Override
     public int compare(final Order o1, final Order o2) {

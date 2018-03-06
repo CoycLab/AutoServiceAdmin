@@ -1,9 +1,9 @@
 package com.github.coyclab.facade;
 
-import com.github.coyclab.comparators.OrderCompByPrice;
-import com.github.coyclab.manager.OrderManager;
-import com.github.coyclab.manager.RepairPlaceManager;
-import com.github.coyclab.manager.WorkerManager;
+import com.github.coyclab.comparators.OrderByPriceComparator;
+import com.github.coyclab.managers.OrderManager;
+import com.github.coyclab.managers.RepairPlaceManager;
+import com.github.coyclab.managers.WorkerManager;
 import com.github.coyclab.models.Order;
 import com.github.coyclab.models.RepairPlace;
 import com.github.coyclab.models.Worker;
@@ -17,8 +17,9 @@ public class Facade {
     private WorkerManager mWorkerManager;
     private RepairPlaceManager mRepairPlaceManager;
 
-    public Facade() {
+    private StringBuilder stringBuilder;
 
+    public Facade() {
         mWorkerManager = new WorkerManager();
         mOrderManager = new OrderManager();
         mRepairPlaceManager = new RepairPlaceManager();
@@ -48,41 +49,77 @@ public class Facade {
         mOrderManager.add(new Order(9, new Date(), new Date(), 101f));
     }
 
+    public String getWorkers() {
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("Список работников:")
+                .append("\n");
+
+        List<Worker> workers = mWorkerManager.getWorkers();
+
+        for (Worker w : workers) {
+            stringBuilder.append(w)
+                    .append("\n");
+        }
+
+        return stringBuilder.toString();
+    }
+
     public String getFreeWorkers() {
-        StringBuilder builder = new StringBuilder();
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("Список свободных работников:")
+                .append("\n");
 
         List<Worker> freeWorkers = mWorkerManager.getFreeWorkers();
 
         for (Worker w : freeWorkers) {
-            builder.append(w)
+            stringBuilder.append(w)
                     .append("\n");
         }
 
-        return builder.toString();
+        return stringBuilder.toString();
+    }
+
+    public void addWorker(int id, String name){
+        mWorkerManager.addWorker(id, name);
     }
 
     public String getOrders() {
-        StringBuilder builder = new StringBuilder();
+        stringBuilder = new StringBuilder();
 
         List<Order> orderList = mOrderManager.getOrders();
 
         for (Order o : orderList) {
-            builder.append(o).append("\n");
+            stringBuilder.append(o).append("\n");
         }
 
-        return builder.toString();
+        return stringBuilder.toString();
     }
 
     public String getOrdersByPrice() {
 
-        StringBuilder builder = new StringBuilder();
+        stringBuilder = new StringBuilder();
 
-        List<Order> orderList = mOrderManager.getOrders(new OrderCompByPrice());
+        List<Order> orderList = mOrderManager.getOrders(new OrderByPriceComparator());
 
         for (Order o : orderList) {
-            builder.append(o).append("\n");
+            stringBuilder.append(o).append("\n");
         }
 
-        return builder.toString();
+        return stringBuilder.toString();
     }
+
+    public String getFreeRepairPlaces(){
+        stringBuilder = new StringBuilder();
+
+        List<RepairPlace> repairPlaceList = mRepairPlaceManager.getFreeRepairPlaces();
+
+        stringBuilder.append("Свободные ремонтные места: ")
+                .append("\n");
+        for (RepairPlace r: repairPlaceList) {
+                stringBuilder.append(r);
+        }
+
+        return stringBuilder.toString();
+    }
+
 }

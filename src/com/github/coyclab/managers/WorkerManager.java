@@ -1,4 +1,4 @@
-package com.github.coyclab.manager;
+package com.github.coyclab.managers;
 
 import com.github.coyclab.api.AManager;
 import com.github.coyclab.models.Worker;
@@ -13,6 +13,11 @@ public class WorkerManager extends AManager<WorkerRepo, Worker> {
         super(new WorkerRepo());
     }
 
+    public List<Worker> getWorkers() {
+
+        return repository.getRepository();
+    }
+
     public List<Worker> getFreeWorkers() {
         List<Worker> workers = repository.getRepository();
         List<Worker> freeWorkers = new ArrayList<>();
@@ -24,5 +29,10 @@ public class WorkerManager extends AManager<WorkerRepo, Worker> {
         }
 
         return freeWorkers;
+    }
+
+    public void addWorker(int id, String name) {
+        Worker worker = new Worker(id, name);
+        repository.getRepository().add(worker);
     }
 }
