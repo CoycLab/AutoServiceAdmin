@@ -12,7 +12,8 @@ public class Order extends AEntity {
     private Date finishDate;
     private Float price;
     private Worker worker;
-    private OrderStatus status;
+    private OrderStatus orderStatus;
+
 
     public Order(Integer id, Date startDate, Date finishDate, float price) {
         super(id);
@@ -20,7 +21,7 @@ public class Order extends AEntity {
         this.startDate = startDate;
         this.finishDate = finishDate;
         this.price = price;
-        this.status = OrderStatus.WAITING;
+        this.orderStatus = OrderStatus.NEW;
     }
 
     public Date getStartDate() {
@@ -55,36 +56,43 @@ public class Order extends AEntity {
         this.worker = worker;
     }
 
-    public OrderStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(OrderStatus status) {
-        this.status = status;
-    }
-
     public Date getEntryDate() {
         return entryDate;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-
+        String status = "";
+        if (orderStatus== OrderStatus.NEW){
+            status = "НОВЫЙ";
+        } else if (orderStatus == OrderStatus.DONE){
+            status = "ЗАКРЫТ";
+        } else if (orderStatus.equals(OrderStatus.CANCELED)){
+            status = "ОТМЕНЕН";
+        }
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
 
         builder.append("Id: ").append(getId()).append("\n")
                 .append("Entry date: ").append(dateFormat.format(entryDate)).append("\n")
                 .append("Start date: ").append(dateFormat.format(startDate)).append("\n")
                 .append("Finish date: ").append(dateFormat.format(finishDate)).append("\n")
-                .append("Price: ").append(price).append("\n");
+                .append("Price: ").append(price).append("\n")
+                .append("Status: ").append(status).append("\n");
         return builder.toString();
     }
 
     public enum OrderStatus {
+        NEW,
         DONE,
-        CANCELED,
-        DELETED,
-        WAITING
+        CANCELED
     }
 }

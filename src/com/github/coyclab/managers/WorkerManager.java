@@ -31,8 +31,46 @@ public class WorkerManager extends AManager<WorkerRepo, Worker> {
         return freeWorkers;
     }
 
-    public void addWorker(int id, String name) {
-        Worker worker = new Worker(id, name);
-        repository.getRepository().add(worker);
+    public Boolean add(int id, String name) {
+        if (isFreeId(id)){
+            Worker worker = new Worker(id, name);
+            repository.getRepository().add(worker);
+            return true;
+        }
+        return false;
     }
+
+    public void remove(int id) {
+        List<Worker> workerList = repository.getRepository();
+        boolean flag = false;
+        for (int i = 0; i < workerList.size(); i++) {
+            if (workerList.get(i).getId().equals(id)) {
+                workerList.remove(i);
+                flag = true;
+            }
+        }
+
+        if (!flag) {
+            System.out.println("Нет работника с таким номером...");
+        }
+    }
+
+    public void remove(String name) {
+        List<Worker> workerList = repository.getRepository();
+        boolean flag = false;
+
+        for (int i = 0; i < workerList.size(); i++) {
+            if (workerList.get(i).getName().equals(name)) {
+                workerList.remove(i);
+                flag = true;
+                break;
+            }
+        }
+
+        if (!flag) {
+            System.out.println("Нет работника с таким именем...");
+        }
+
+    }
+
 }

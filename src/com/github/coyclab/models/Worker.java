@@ -31,6 +31,10 @@ public class Worker extends AEntity {
 
     @Override
     public String toString() {
-        return "Id: " + getId() + " Name: " + workerName;
+        String status;
+        if (isFree) {
+            status = "FREE";
+        } else status = "BUSY";
+        return "Id: " + getId() + " Name: " + workerName + " --> " + status ;
     }
 }

@@ -1,5 +1,7 @@
 package com.github.coyclab.api;
 
+import java.util.List;
+
 public abstract class AManager<R extends ARepository, E extends AEntity> {
 
     protected R repository;
@@ -8,12 +10,13 @@ public abstract class AManager<R extends ARepository, E extends AEntity> {
         this.repository = repository;
     }
 
-    public void add(final E entity) {
-        repository.getRepository().add(entity);
-    }
+    protected Boolean isFreeId(int id) {
+        List<E> repository = this.repository.getRepository();
 
-    public void remove(final Integer id) {
-        repository.getRepository().remove(id);
+        for (E entity : repository) {
+            if (entity.getId().equals(id)) return false;
+        }
+        return true;
     }
 
 }

@@ -28,4 +28,25 @@ public class RepairPlaceManager extends AManager<RepairPlaceRepo, RepairPlace> {
 
         return temp;
     }
+
+    public Boolean add(int id) {
+        if (isFreeId(id)){
+            RepairPlace repairPlace = new RepairPlace(id);
+            repository.getRepository().add(repairPlace);
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean remove(int id){
+        List<RepairPlace> repairPlaceList = repository.getRepository();
+        for (int i = 0; i < repairPlaceList.size() ; i++) {
+            if (repairPlaceList.get(i).getId().equals(id)){
+                repairPlaceList.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

@@ -1,29 +1,20 @@
 package com.github.coyclab;
 
-import com.github.coyclab.facade.Facade;
+import com.github.coyclab.facade.Director;
+
+import java.util.Date;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Facade facade = new Facade();
-        facade.initAutoservice();
+        Director director = new Director();
+        director.init();
 
 
-
-        System.out.println(facade.getWorkers());
-
-        facade.addWorker(8, "TestWorker");
-
-        System.out.println(facade.getWorkers());
-
-        System.out.println(facade.getFreeWorkers());
-
-//        System.out.println(facade.getOrders());
-//
-//        System.out.println(facade.getOrdersByPrice());
-//
-//        System.out.println(facade.getFreeRepairPlaces());
+        director.addOrder(11,new Date(), new Date(), 55.55f);
+        director.closeOrder(11);
+        System.out.println(director.getFreeWorkers());
 
     }
 }
