@@ -7,6 +7,7 @@ import com.github.coyclab.managers.WorkerManager;
 import com.github.coyclab.models.Order;
 import com.github.coyclab.models.RepairPlace;
 import com.github.coyclab.models.Worker;
+import com.github.coyclab.utils.Reporter;
 
 import java.util.Date;
 import java.util.List;
@@ -79,16 +80,15 @@ public class Director {
         return stringBuilder.toString();
     }
 
-    public void addWorker(int id, String name) {
-        mWorkerManager.add(id, name);
+    public String addWorker(int id, String name) {
+        if (mWorkerManager.add(id, name)){
+            return "РАБОТНИК УСПЕШНО ДОБАВЛЕН";
+        }
+        return "ЧТО-ТО НЕ ТАК";
     }
 
     public void removeWorkerById(int id) {
         mWorkerManager.remove(id);
-    }
-
-    public void removeWorkerByName(String name) {
-        mWorkerManager.remove(name);
     }
 
     public void addRepairPlace(int id) {

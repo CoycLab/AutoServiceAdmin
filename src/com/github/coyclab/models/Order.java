@@ -12,7 +12,7 @@ public class Order extends AEntity {
     private Date finishDate;
     private Float price;
     private Worker worker;
-    private OrderStatus orderStatus;
+    private Status orderStatus;
 
 
     public Order(Integer id, Date startDate, Date finishDate, float price) {
@@ -21,7 +21,7 @@ public class Order extends AEntity {
         this.startDate = startDate;
         this.finishDate = finishDate;
         this.price = price;
-        this.orderStatus = OrderStatus.NEW;
+        this.orderStatus = Status.NEW;
     }
 
     public Date getStartDate() {
@@ -60,25 +60,17 @@ public class Order extends AEntity {
         return entryDate;
     }
 
-    public OrderStatus getOrderStatus() {
+    public Status getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
+    public void setOrderStatus(Status orderStatus) {
         this.orderStatus = orderStatus;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        String status = "";
-        if (orderStatus== OrderStatus.NEW){
-            status = "НОВЫЙ";
-        } else if (orderStatus == OrderStatus.DONE){
-            status = "ЗАКРЫТ";
-        } else if (orderStatus.equals(OrderStatus.CANCELED)){
-            status = "ОТМЕНЕН";
-        }
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
 
         builder.append("Id: ").append(getId()).append("\n")
@@ -86,13 +78,24 @@ public class Order extends AEntity {
                 .append("Start date: ").append(dateFormat.format(startDate)).append("\n")
                 .append("Finish date: ").append(dateFormat.format(finishDate)).append("\n")
                 .append("Price: ").append(price).append("\n")
-                .append("Status: ").append(status).append("\n");
+                .append("Status: ").append(orderStatus).append("\n");
         return builder.toString();
     }
 
-    public enum OrderStatus {
-        NEW,
-        DONE,
-        CANCELED
+    public enum Status {
+        NEW("НОВЫЙ"),
+        DONE("ВЫПОЛНЕН"),
+        CANCELED("ОТМЕНЕН");
+
+        private String status;
+
+        Status(String status) {
+            this.status = status;
+        }
+
+        @Override
+        public String toString() {
+            return status;
+        }
     }
 }

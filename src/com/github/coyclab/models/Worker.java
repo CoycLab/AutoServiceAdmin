@@ -5,12 +5,12 @@ import com.github.coyclab.api.AEntity;
 public class Worker extends AEntity {
 
     private String workerName;
-    private boolean isFree;
+    private Status workerStatus;
 
     public Worker(int id, String workerName) {
         super(id);
         this.workerName = workerName;
-        this.isFree = true;
+        this.workerStatus = Status.FREE;
     }
 
     public String getName() {
@@ -21,20 +21,34 @@ public class Worker extends AEntity {
         this.workerName = workerName;
     }
 
-    public boolean isFree() {
-        return isFree;
-    }
-
-    public void setFree(boolean free) {
-        isFree = free;
-    }
 
     @Override
     public String toString() {
-        String status;
-        if (isFree) {
-            status = "FREE";
-        } else status = "BUSY";
-        return "Id: " + getId() + " Name: " + workerName + " --> " + status ;
+
+        return "Id: " + getId() + " Name: " + workerName + " --> " + workerStatus ;
+    }
+
+    public Status getWorkerStatus() {
+        return workerStatus;
+    }
+
+    public void setWorkerStatus(Status workerStatus) {
+        this.workerStatus = workerStatus;
+    }
+
+    public enum Status {
+        BUSY("ЗАНЯТ"),
+        FREE("СВОБОДЕН");
+
+        private String status;
+
+        Status(String status) {
+            this.status = status;
+        }
+
+        @Override
+        public String toString() {
+            return status;
+        }
     }
 }

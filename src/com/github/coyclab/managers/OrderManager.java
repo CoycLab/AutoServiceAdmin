@@ -2,6 +2,7 @@ package com.github.coyclab.managers;
 
 import com.github.coyclab.api.AManager;
 import com.github.coyclab.models.Order;
+import com.github.coyclab.models.RepairPlace;
 import com.github.coyclab.repository.OrderRepo;
 
 import java.util.Collections;
@@ -27,7 +28,7 @@ public class OrderManager extends AManager<OrderRepo, Order> {
         return orders;
     }
 
-    public Boolean add(Integer id, Date startDate, Date finishDate, Float price) {
+    public boolean add(Integer id, Date startDate, Date finishDate, Float price) {
         if (isFreeId(id)) {
             Order order = new Order(id, startDate, finishDate, price);
             repository.getRepository().add(order);
@@ -36,7 +37,7 @@ public class OrderManager extends AManager<OrderRepo, Order> {
         return false;
     }
 
-    public Boolean remove(Integer id) {
+    public boolean remove(Integer id) {
         List<Order> repository = this.repository.getRepository();
         for (int i = 0; i < repository.size(); i++) {
             if (repository.get(i).getId().equals(id)) {
@@ -47,24 +48,14 @@ public class OrderManager extends AManager<OrderRepo, Order> {
         return false;
     }
 
-    public Boolean close(Integer id) {
-        List<Order> repository = this.repository.getRepository();
-        for (int i = 0; i < repository.size(); i++) {
-            Order order = repository.get(i);
-            if (order.getId().equals(id)) {
-                order.setOrderStatus(Order.OrderStatus.DONE);
-                return true;
-            }
-        }
-        return false;
-    }
 
-    public Boolean cancel(Integer id) {
+    //todo not works yet
+    public boolean setStatus(int id, Order.Status status) {
         List<Order> repository = this.repository.getRepository();
         for (int i = 0; i < repository.size(); i++) {
             Order order = repository.get(i);
             if (order.getId().equals(id)) {
-                order.setOrderStatus(Order.OrderStatus.CANCELED);
+                order.setOrderStatus(Order.Status.DONE);
                 return true;
             }
         }

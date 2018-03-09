@@ -10,7 +10,7 @@ public abstract class AManager<R extends ARepository, E extends AEntity> {
         this.repository = repository;
     }
 
-    protected Boolean isFreeId(int id) {
+    protected boolean isFreeId(int id) {
         List<E> repository = this.repository.getRepository();
 
         for (E entity : repository) {
@@ -18,5 +18,6 @@ public abstract class AManager<R extends ARepository, E extends AEntity> {
         }
         return true;
     }
+
 
 }

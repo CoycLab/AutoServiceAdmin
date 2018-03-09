@@ -11,10 +11,7 @@ public class Main {
         Director director = new Director();
         director.init();
 
-
-        director.addOrder(11,new Date(), new Date(), 55.55f);
-        director.closeOrder(11);
-        System.out.println(director.getFreeWorkers());
-
+        System.out.println(director.addWorker(4, "TEST"));
+        System.out.println(director.getWorkers());
     }
 }

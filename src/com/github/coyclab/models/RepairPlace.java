@@ -4,19 +4,19 @@ import com.github.coyclab.api.AEntity;
 
 public class RepairPlace extends AEntity {
 
-    private boolean isFree;
+    private Status status;
 
     public RepairPlace(int id) {
         super(id);
-        this.isFree = true;
+        this.status = Status.FREE;
     }
 
-    public boolean isFree() {
-        return isFree;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setFree(boolean freeRepairPlace) {
-        isFree = freeRepairPlace;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @Override
@@ -29,5 +29,21 @@ public class RepairPlace extends AEntity {
                 .append("\n");
 
         return builder.toString();
+    }
+
+    public enum Status{
+        FREE("СВОБОДНО"),
+        BUSY("ЗАНЯТО");
+
+        private String status;
+
+        Status(String status) {
+            this.status = status;
+        }
+
+        @Override
+        public String toString() {
+            return status;
+        }
     }
 }

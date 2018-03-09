@@ -21,7 +21,7 @@ public class RepairPlaceManager extends AManager<RepairPlaceRepo, RepairPlace> {
         List<RepairPlace> temp = new ArrayList<>();
 
         for (RepairPlace r : repository.getRepository()) {
-            if (r.isFree()) {
+            if (r.getStatus().equals(RepairPlace.Status.FREE)) {
                 temp.add(r);
             }
         }
@@ -29,7 +29,7 @@ public class RepairPlaceManager extends AManager<RepairPlaceRepo, RepairPlace> {
         return temp;
     }
 
-    public Boolean add(int id) {
+    public boolean add(int id) {
         if (isFreeId(id)){
             RepairPlace repairPlace = new RepairPlace(id);
             repository.getRepository().add(repairPlace);
@@ -38,7 +38,7 @@ public class RepairPlaceManager extends AManager<RepairPlaceRepo, RepairPlace> {
         return false;
     }
 
-    public Boolean remove(int id){
+    public boolean remove(int id){
         List<RepairPlace> repairPlaceList = repository.getRepository();
         for (int i = 0; i < repairPlaceList.size() ; i++) {
             if (repairPlaceList.get(i).getId().equals(id)){
