@@ -51,7 +51,7 @@ public class OrderManager extends AManager<OrderRepo, Order> {
         getById(id).setOrderStatus(status);
     }
 
-    private Order getById(int id) {
+    public Order getById(int id) {
         Order order = null;
         List<Order> repository = this.repository.getRepository();
         for (Order o : repository) {
