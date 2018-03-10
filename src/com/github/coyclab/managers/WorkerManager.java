@@ -32,11 +32,10 @@ public class WorkerManager extends AManager<WorkerRepo, Worker> {
     }
 
     public boolean add(int id, String name) {
-        Worker worker = new Worker(id, name);
-        return repository.add(worker);
+        return repository.add(new Worker(id, name));
     }
 
     public boolean remove(int id) {
-        return repository.remove(id);
+        return repository.remove(getItemById(id));
     }
 }

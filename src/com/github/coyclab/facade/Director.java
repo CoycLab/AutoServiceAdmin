@@ -50,6 +50,7 @@ public class Director {
         mOrderManager.add(9, new Date(), new Date(), 101f);
     }
 
+    //Worker administration methods
     public String getWorkers() {
         stringBuilder = new StringBuilder();
         stringBuilder.append("Список работников:")
@@ -81,29 +82,34 @@ public class Director {
     }
 
     public String addWorker(int id, String name) {
-        if (mWorkerManager.add(id, name)){
+        if (mWorkerManager.add(id, name)) {
             return "РАБОТНИК УСПЕШНО ДОБАВЛЕН";
         }
         return "ЧТО-ТО НЕ ТАК";
     }
 
-    public void removeWorkerById(int id) {
-        mWorkerManager.remove(id);
+    public String removeWorkerById(int id) {
+        if (mWorkerManager.remove(id)) {
+            return String.format("Работник Id%d успешно удален", id);
+        }
+        return "НЕТ ТАКОГО РАБОТНИКА";
     }
 
-    public void addRepairPlace(int id) {
+
+    //RepairPlace administration methods
+    public String addRepairPlace(int id) {
         if (mRepairPlaceManager.add(id)) {
-            System.out.println("Добавлено ремонтное место № " + id);
+            return "Добавлено ремонтное место № " + id;
         } else {
-            System.out.println("Ремонтное место с таким номером уже существует...");
+            return String.format("Ремонтное место с номером \"%d\" уже существует...", id);
         }
     }
 
-    public void removeRepairPlace(int id) {
+    public String removeRepairPlace(int id) {
         if (mRepairPlaceManager.remove(id)) {
-            System.out.println("Ремонтное место № " + id + " успешно удалено...");
+            return "Ремонтное место № " + id + " успешно удалено...";
         } else {
-            System.out.println("Нет ремонтного места с таким номером...");
+            return "Нет ремонтного места с таким номером...";
         }
     }
 
@@ -121,9 +127,11 @@ public class Director {
         return stringBuilder.toString();
     }
 
-    public String getOrderById( int id){
+    //Order administration methods
+    public String getOrderById(int id) {
         return mOrderManager.getById(id).toString();
     }
+
     public String getOrders() {
         stringBuilder = new StringBuilder();
 
@@ -137,9 +145,7 @@ public class Director {
     }
 
     public String getOrdersByPrice() {
-
         stringBuilder = new StringBuilder();
-
         List<Order> orderList = mOrderManager.getOrders(new OrderByPriceComparator());
 
         for (Order o : orderList) {
@@ -149,20 +155,16 @@ public class Director {
         return stringBuilder.toString();
     }
 
-    public void addOrder(int id, Date startDate, Date finishDate, Float price) {
-        if (!mOrderManager.add(id, startDate, finishDate, price)) {
-            System.out.println("Не удалось создать заказ...");
+    public String addOrder(int id, Date startDate, Date finishDate, Float price) {
+        if (mOrderManager.add(id, startDate, finishDate, price)) {
+            return String.format("Заказ №%d успешно создан...", id);
+        } else {
+            return "Не удалось создать заказ...";
         }
     }
 
-    public void closeOrder(int id){
-        mOrderManager.close(id);
+    public void setOrderStatus(int id, Order.Status status){
+        mOrderManager.getById(id).setOrderStatus(status);
     }
-
-    public void cancelOrder(int id){
-        mOrderManager.cancel(id);
-    }
-
-
 
 }

@@ -2,7 +2,6 @@ package com.github.coyclab.managers;
 
 import com.github.coyclab.api.AManager;
 import com.github.coyclab.models.Order;
-import com.github.coyclab.models.RepairPlace;
 import com.github.coyclab.repository.OrderRepo;
 
 import java.util.Collections;
@@ -48,26 +47,16 @@ public class OrderManager extends AManager<OrderRepo, Order> {
         return false;
     }
 
-
-    //todo not works yet
-    public boolean setStatus(int id, Order.Status status) {
-        List<Order> repository = this.repository.getRepository();
-        for (int i = 0; i < repository.size(); i++) {
-            Order order = repository.get(i);
-            if (order.getId().equals(id)) {
-                order.setOrderStatus(Order.Status.DONE);
-                return true;
-            }
-        }
-        return false;
+    public void setStatus(int id, Order.Status status) {
+        getById(id).setOrderStatus(status);
     }
 
-    public Order getById(Integer id) {
+    private Order getById(int id) {
         Order order = null;
         List<Order> repository = this.repository.getRepository();
-        for (int i = 0; i < repository.size(); i++) {
-            if (repository.get(i).getId().equals(id)){
-                order = repository.get(i);
+        for (Order o : repository) {
+            if (o.getId().equals(id)) {
+                order = o;
             }
         }
         return order;

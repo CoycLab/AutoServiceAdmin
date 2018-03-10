@@ -24,7 +24,6 @@ public class Worker extends AEntity {
 
     @Override
     public String toString() {
-
         return "Id: " + getId() + " Name: " + workerName + " --> " + workerStatus ;
     }
 
